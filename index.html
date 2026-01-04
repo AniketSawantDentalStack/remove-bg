@@ -5,48 +5,90 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Remove-BG</title>
+    <title>Remove Background</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <div>
-        <div class="container">
+    <div class="app">
+        <header class="header">
             <h1>Remove Image Background</h1>
+            <p>Upload an image and get a transparent background in seconds.</p>
+        </header>
 
-            <!-- Add Card -->
-            <div class="card" id="addCard">
-                <button>
-                    <input type="file" name="" id="fileInput" />
-                    Upload Image
-                </button>
-                <p>Choose an Image to Remove BG</p>
-            </div>
+        <main class="main">
 
-            <!-- Display Card -->
-            <div class="card" id="displayCard">
-                <div class="image-cont">
-                    <img id="display-img" src="" alt="" />
+            <!-- Upload Section -->
+            <section class="upload-box" id="uploadBox">
+                <input type="file" id="fileInput" accept="image/*" hidden />
+                <div class="drop-area" id="dropArea">
+                    <div class="icon">📷</div>
+                    <h2>Drop your image here</h2>
+                    <p>or</p>
+                    <button class="btn primary" id="uploadBtn">Browse Files</button>
+                    <span class="hint">Supported formats: JPG, PNG, WEBP</span>
                 </div>
-                <button id="startBtn">Remove BG</button>
-            </div>
+            </section>
 
-            <!-- Download Card -->
-            <div class="card" id="downloadCard">
-                <div class="image-cont">
-                    <img class="image-before" src="" alt="" />
-                    <img class="image-after" src="" alt="" />
-                </div>
-                <div style="display: flex; gap: 10px">
-                    <button style="padding: 10px 40px">
-                        <a id="downloadHref" download="transparentImage"> Download </a>
+            <!-- Preview + Result -->
+            <section class="cards" id="cards">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Preview</h3>
+                        <span class="badge">Original</span>
+                    </div>
+                    <div class="image-wrapper">
+                        <img id="previewImg" src="" alt="Preview" />
+                    </div>
+
+                    <button class="btn primary" id="removeBtn">
+                        Remove Background
                     </button>
+
+                    <p class="small-text">Click remove to process your image</p>
                 </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Result</h3>
+                        <span class="badge success">Transparent</span>
+                    </div>
+                    <div class="image-wrapper checkerboard">
+                        <img id="resultImg" src="" alt="Result" />
+                    </div>
+
+                    <div class="actions">
+                        <a id="downloadBtn" class="btn success" download="transparent.png">
+                            Download PNG
+                        </a>
+                        <button class="btn secondary" id="resetBtn">
+                            Upload New
+                        </button>
+                    </div>
+
+                    <p class="small-text" id="statusText">Waiting for processing...</p>
+                </div>
+            </section>
+
+            <!-- Loader -->
+            <div class="loader" id="loader">
+                <div class="spinner"></div>
+                <p>Removing background... please wait</p>
             </div>
-        </div>
+
+        </main>
+
+        <footer class="footer">
+            <p>Made with ❤️ | Powered by remove.bg API</p>
+        </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
-
 
 </html>
